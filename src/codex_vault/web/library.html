@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Acervo do Codex</title>
+  <style>/* WIDGET_CSS */</style>
+</head>
+<body>
+  <main>
+    <header>
+      <div class="heading">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4 6h16v14H4zM3 3h18v3H3zM9 10h6"/></svg>
+        <h1>Acervo do Codex</h1>
+      </div>
+      <form id="search-form" role="search">
+        <label class="visually-hidden" for="query">Buscar nas conversas</label>
+        <input id="query" type="search" required maxlength="500" placeholder="Buscar nas conversas">
+        <button type="submit">Buscar</button>
+      </form>
+    </header>
+    <nav aria-label="Acervo">
+      <button id="projects-tab" aria-current="page">Projetos</button>
+      <button id="devices-tab">Dispositivos</button>
+    </nav>
+    <p id="status" role="status" aria-live="polite"></p>
+    <section id="view" aria-label="Conteúdo do acervo" aria-busy="true">
+      <p class="empty">Conectando ao acervo…</p>
+    </section>
+    <dialog id="context-dialog" aria-labelledby="context-title">
+      <h2 id="context-title">Continuar no ChatGPT</h2>
+      <label for="context-text">Contexto para a nova conversa</label>
+      <textarea id="context-text" readonly rows="10"></textarea>
+      <p id="context-status" role="status"></p>
+      <div class="actions">
+        <button id="open-draft" class="primary">Abrir rascunho</button>
+        <button id="copy-context">Copiar</button>
+        <button id="close-dialog">Fechar</button>
+      </div>
+    </dialog>
+  </main>
+  <script>/* WIDGET_JS */</script>
+</body>
+</html>

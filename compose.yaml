@@ -1,0 +1,28 @@
+services:
+  db:
+    image: postgres:17
+    environment:
+      POSTGRES_DB: vault
+      POSTGRES_USER: vault
+      POSTGRES_PASSWORD: ${VAULT_DB_PASSWORD:?defina VAULT_DB_PASSWORD}
+    volumes:
+      - vault-db:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U vault -d vault"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+  vault:
+    build: .
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      VAULT_ADMIN_TOKEN: ${VAULT_ADMIN_TOKEN:?defina VAULT_ADMIN_TOKEN}
+      VAULT_PUBLIC_URL: ${VAULT_PUBLIC_URL:?defina VAULT_PUBLIC_URL}
+      VAULT_DATABASE_URL: postgresql+psycopg://vault:${VAULT_DB_PASSWORD}@db:5432/vault
+      VAULT_OAUTH_REDIRECT_HOSTS: ${VAULT_OAUTH_REDIRECT_HOSTS:-["chatgpt.com","platform.openai.com","127.0.0.1","localhost"]}
+    ports:
+      - "127.0.0.1:8765:8765"
+volumes:
+  vault-db:

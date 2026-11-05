@@ -1,0 +1,26 @@
+[
+  {
+    "header": {
+      "source_id": "demo-orbita-1",
+      "workspace": "exemplo",
+      "title": "Autenticação do projeto Órbita",
+      "cwd": "C:/repos/orbita",
+      "repository": "https://github.com/example/orbita.git",
+      "updated_at": "2026-09-25T14:32:00+00:00"
+    },
+    "items": [
+      {
+        "id": "demo-1",
+        "role": "user",
+        "text": "Qual foi a decisão sobre autenticação?",
+        "timestamp": "2026-09-25T14:30:00+00:00"
+      },
+      {
+        "id": "demo-2",
+        "role": "assistant",
+        "text": "Decidimos adotar OAuth para a autenticação. Pendência: validar a renovação de tokens no ambiente de teste.",
+        "timestamp": "2026-09-25T14:32:00+00:00"
+      }
+    ]
+  }
+]
