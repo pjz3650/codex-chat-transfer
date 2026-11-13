@@ -204,7 +204,11 @@ async function read(chat, back, offset = 0, highlight) {
     $("context-text").value = context.prompt;
     const supported = Boolean(hostCapabilities.experimental?.["openai/message"] || hostCapabilities.extensions?.["openai/message"]);
     $("open-draft").disabled = !supported;
-    $("context-status").textContent = supported ? "Revise o contexto antes de abrir a nova conversa." : "Copie o contexto para uma nova conversa.";
+    const instructions = supported
+      ? "Revise o contexto antes de abrir a nova conversa."
+      : "Copie o contexto para uma nova conversa.";
+    const truncationWarning = "O contexto foi cortado. O rascunho inclui até 1.200 caracteres por mensagem. Use a exportação para consultar o texto completo.";
+    $("context-status").textContent = context.truncated ? `${truncationWarning} ${instructions}` : instructions;
     $("context-dialog").showModal();
   }, "primary")));
   view.append(node("p", `${page.device} · ${page.header.workspace} · ${date(page.header.updated_at)}`, "meta"));
